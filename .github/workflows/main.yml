@@ -9,9 +9,12 @@ jobs:
     name: Build Vue
     steps:
     - uses: actions/checkout@v2
-    - id: Build-Vue
-      uses: xRealNeon/VuePagesAction@1.0.1
+    - uses: actions/setup-node@v2
       with:
-        username: 'Kirill-Kyrgansky'
-        reponame: 'cheesemaker-server-serve'
-        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+          node-version: '14'
+    - name: npm install
+      run: |
+        npm install
+
+    - name: npm build
+      run: npm build --if-present
